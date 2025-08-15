@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Encontre o Wally - Mobile</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 48px;
+    }
+    p {
+      font-size: 24px;
+    }
+    #wally {
+      width: 100%;
+      height: auto;
+      border: 3px solid #333;
+    }
+    #screamer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain; /* ajusta bem para telas de celular */
+      display: none;
+      z-index: 9999;
+      background: black;
+    }
+    #start-btn {
+      font-size: 28px;
+      padding: 15px 30px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Encontre o Wally (Mobile)</h1>
+  <p>Clique no botão para começar</p>
+  <button id="start-btn">COMEÇAR</button>
+
+  <div id="game" style="display:none;">
+    <img id="wally" src="https://i.imgur.com/gFYWe2w.jpeg" alt="Onde está o Wally?">
+  </div>
+
+  <video id="screamer" src="https://i.imgur.com/9koL09a.mp4"></video>
+
+  <script>
+    const startBtn = document.getElementById("start-btn");
+    const screamer = document.getElementById("screamer");
+
+    startBtn.addEventListener("click", () => {
+      document.querySelector("p").style.display = "none";
+      document.getElementById("game").style.display = "block";
+      startBtn.style.display = "none";
+
+      setTimeout(() => {
+        screamer.style.display = "block";
+        screamer.requestFullscreen?.();
+        screamer.play();
+      }, 10000);
+    });
+  </script>
+</body>
+</html>
